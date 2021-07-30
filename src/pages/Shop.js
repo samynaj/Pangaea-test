@@ -24,7 +24,7 @@ function Shop() {
     const [cart, setCart] = useState([]);
 
     // state for opening and closing cart
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     
 
@@ -232,7 +232,6 @@ function Shop() {
     if(error) {
         return alert(error.message)
     }
-
     return (
         <div className={classes.root}>
             <Header 
@@ -264,7 +263,10 @@ function Shop() {
                             title={item.title}
                             price={item.price}
                             currency={currency}
-                            addToCart={() => setCart(cartItems => addItemToCart(cartItems, item))}
+                            addToCart={() => {
+                                setCart(cartItems => addItemToCart(cartItems, item));
+                                setOpen(true)
+                            }}
                         />
                     ))
                 }
